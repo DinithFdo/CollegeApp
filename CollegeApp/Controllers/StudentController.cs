@@ -10,22 +10,12 @@ public class StudentController : ControllerBase
     [HttpGet]
     public IEnumerable<Student> GetStudentName()
     {
-        return new List<Student>()
-        {
-            new Student
-            {
-                Id = 1,
-                StudentName = "Dinith",
-                Email = "dinith@email.com",
-                Address = "108/A,Chilaw Road,Negombo."
-            },
-            new Student
-            {
-                Id = 2,
-                StudentName = "Maleesha",
-                Email = "maleesha@email.com",
-                Address = "327/5,Mahahunupitiya,Negombo."
-            }
-        };
+        return CollegeRepository.Students;
+    }
+
+    [HttpGet("{id:Int}")]
+    public Student GetStudentById(int id)
+    {
+        return CollegeRepository.Students.Where(x => x.Id == id).FirstOrDefault();
     }
 }
